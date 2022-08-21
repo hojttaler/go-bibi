@@ -11,7 +11,7 @@ type ErrorHandleLogger struct {
 }
 
 func (h *ErrorHandleLogger) Handle(err error, initiatorCommand string) {
-	formattedError := fmt.Errorf("ошибка при исполнении команды '%s', ошибка: %w", initiatorCommand, err)
+	formattedError := fmt.Errorf("Ошибка во время исполнении команды \"%s\": %w", initiatorCommand, err)
 
 	h.Logger.LogError(formattedError)
 }

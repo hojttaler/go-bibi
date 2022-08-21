@@ -18,11 +18,9 @@ func (l *LogsHandler) sendLogToConsole(err error) {
 }
 
 func (l *LogsHandler) LogError(error error) {
-	_, sendError := l.Client.ChannelMessageSend(config.Channels.Logs.Errors, error.Error())
+	_, sendError := l.Client.ChannelMessageSend(config.Config.Channels.Logs.Errors, error.Error())
 
 	if sendError != nil {
-		fmt.Println(config.Channels)
-
 		l.sendLogToConsole(error)
 		l.sendLogToConsole(sendError)
 	}

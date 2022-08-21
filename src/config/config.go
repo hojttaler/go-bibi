@@ -9,8 +9,6 @@ import (
 )
 
 var Config types.Config
-var Roles types.Roles
-var Channels types.Channels
 
 func LoadConfig(env string) error {
 	envFile := ".env"
@@ -30,16 +28,6 @@ func LoadConfig(env string) error {
 	}
 
 	err = dotenv.NewDecoder(file).Decode(&Config)
-	if err != nil {
-		return err
-	}
-
-	err = dotenv.NewDecoder(file).Decode(&Roles)
-	if err != nil {
-		return err
-	}
-
-	err = dotenv.NewDecoder(file).Decode(&Channels)
 	if err != nil {
 		return err
 	}

@@ -12,20 +12,20 @@ var AdminCommands = map[string]types.Command{
 		Description:        "Send embed to channel",
 		Params:             []string{"...embed"},
 		AllowedPermissions: []int{discordgo.PermissionAdministrator},
-		AllowedRoles:       []string{config.Roles.Moderator},
+		AllowedRoles:       []string{config.Config.Roles.Moderator},
 	},
 	"ebdedit": {
 		Execute:            ExecuteEmbedEdit,
 		Description:        "Edit embed",
 		Params:             []string{"messageId", "...embed"},
 		AllowedPermissions: []int{discordgo.PermissionAdministrator},
-		AllowedRoles:       []string{config.Roles.Moderator},
+		AllowedRoles:       []string{config.Config.Roles.Moderator},
 	},
 	"salary": {
 		Execute:            ExecuteGiveSalary,
 		Description:        "Give salary to mentioned users",
 		Params:             []string{"...mentions", "...coins"},
 		AllowedPermissions: []int{discordgo.PermissionAdministrator},
-		AllowedRoles:       []string{config.Roles.Moderator},
+		AllowedRoles:       []string{config.Config.Roles.Moderator},
 	},
 }

@@ -42,12 +42,24 @@ type CoinsController struct {
 	Client    *discordgo.Session
 }
 
-func (c *CoinsController) UpdateCoins(amount string) error {
-	return sendUpdateCoinsPostRequest(c.Recipient.ID, amount)
+func (c *CoinsController) UpdateCoins(amount string) {
+	err := sendUpdateCoinsPostRequest(c.Recipient.ID, amount)
+
+	if err != nil {
+		utils.ErrorHandler.Handle(err, "SendCoins")
+		return
+	}
+
+	c.WriteLogs(amount)
 }
 
-func (c *CoinsController) WriteLogs() {
-	logContent := fmt.Sprintf("<@%s> выдал %s единиц(у) коинов пользователю <@%s>")
+func (c *CoinsController) WriteLogs(amount string) {
+	logContent := fmt.Sprintf(
+		"<@%s> выдал %s единиц(у) коинов пользователю <@%s>",
+		c.Recipient.ID,
+		amount,
+		c.Sender.ID,
+	)
 
-	utils.Logger.Log(logContent, config.Channels.Logs.Salary)
+	utils.Logger.Log(logContent, config.Config.Channels.Logs.Salary)
 }
